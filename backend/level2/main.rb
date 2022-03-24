@@ -15,24 +15,24 @@ class Car
     return days
   end
 
-  def dynamic
-    if @end_date >= @start_date.next_day(1)
-      variable_pricing = @price_per_day * 0.10
-    elsif @end_date >= @start_date.next_day(4)
-      variable_pricing = @price_per_day * 0.3
-    elsif @end_date >= @start_date.next_day(10)
-      variable_pricing = @price_per_day * 0.5
-    else
-      variable_pricing = @price_per_day
-    end
-    return variable_pricing
-  end
-
   def travel
     time = rental * @price_per_day
     fare = @distance * @price_per_km
     total = time + fare
     return total
+  end
+
+  def dynamic
+    if @end_date >= @start_date.next_day(1)
+      variable_pricing =  travel - (travel * 0.10)
+    elsif @end_date >= @start_date.next_day(4)
+      variable_pricing = travel - ( travel * 0.3)
+    elsif @end_date >= @start_date.next_day(10)
+      variable_pricing = travel - ( travel * 0.5)
+    else
+      variable_pricing = travel
+    end
+    return variable_pricing
   end
 
 
@@ -46,11 +46,11 @@ class Car
     tempHash = {
         "rentals": [
           {"id" => 1,
-          "price" => demo1.travel },
+          "price" => demo1.dynamic },
           {"id" => 2,
-          "price" => demo2.travel},
+          "price" => demo2.dynamic},
           {"id" => 3,
-          "price" => demo3.travel}
+          "price" => demo3.dynamic}
         ]
       }
     File.open("./data/output.json" , "w") do |f|
