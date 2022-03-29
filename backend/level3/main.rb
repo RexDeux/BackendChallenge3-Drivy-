@@ -41,18 +41,20 @@ class Car
   end
 
   def fee
-    days = @end_date - @start_date
-    if days = 0
+    days = @start_date - @end_date
+    if days == 0
       days = 100
+    elsif days = 1
+      days = 100 * 2
     else
       days = days * 100
     end
-    ass_fee = ((dynamic * 0.3) / 2) - days
+    ass_fee = insurance_fee - days
     return ass_fee
   end
 
   def roadside
-    roadside = insurance_fee - fee
+    roadside = (rental * 100) + 100
     return roadside
   end
 
@@ -62,7 +64,6 @@ class Car
     demo1 = Car.new(data['cars'][0]['price_per_day'],data['cars'][0]['price_per_km'],data['rentals'][0]['distance'], Date.parse(data['rentals'][0]['start_date']), Date.parse(data['rentals'][0]['end_date']))
     demo2 = Car.new(data['cars'][0]['price_per_day'],data['cars'][0]['price_per_km'],data['rentals'][1]['distance'], Date.parse(data['rentals'][1]['start_date']), Date.parse(data['rentals'][1]['end_date']))
     demo3 = Car.new(data['cars'][0]['price_per_day'],data['cars'][0]['price_per_km'],data['rentals'][2]['distance'], Date.parse(data['rentals'][2]['start_date']), Date.parse(data['rentals'][2]['end_date']))
-    print demo1
     tempHash = {
         "rentals": [
           {
