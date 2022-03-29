@@ -10,7 +10,7 @@ class Car
   end
 
   def rental
-    days = @end_date.mjd - @start_date.mjd
+    days = @end_date.mjd - @start_date.mjd + 1
     if days == 0 then days = 1 end
     return days
   end
@@ -36,7 +36,7 @@ class Car
   end
 
   def insurance_fee
-    fee = (dynamic * 0.3) / 2
+    fee = (dynamic * 1/3) / 2
     return fee
   end
 
@@ -47,14 +47,15 @@ class Car
     elsif days = 1
       days = 100 * 2
     else
-      days = days * 100
+     days = days * 100
     end
-    ass_fee = insurance_fee - days
+    ass_fee = insurance_fee - roadside
     return ass_fee
   end
 
   def roadside
-    roadside = (rental * 100) + 100
+    days = @start_date - @end_date
+    roadside = rental * 100
     return roadside
   end
 
