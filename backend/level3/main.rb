@@ -10,8 +10,14 @@ class Car
   end
 
   def rental
-    days = @end_date.mjd - @start_date.mjd + 1
-    if days == 0 then days = 1 end
+    days = (@end_date - @start_date).to_i
+    if days == 0
+      days = 1
+    elsif days == 1
+      days = 2
+    else
+      days = days
+    end
     return days
   end
 
@@ -44,7 +50,7 @@ class Car
     days = @start_date - @end_date
     if days == 0
       days = 100
-    elsif days = 1
+    elsif days == 1
       days = 100 * 2
     else
      days = days * 100
