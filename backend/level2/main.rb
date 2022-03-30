@@ -14,17 +14,23 @@ class Car
     return days
   end
 
-  def travel
+  def discount
     if rental >= 1
-      @price_per_day =  (@price_per_day * 0.10) + @price_per_day
-    elsif rental >= 4
-      @price_per_day = (@price_per_day * 0.3) + (@price_per_day * 4)
+      discount =  @price_per_day
+    elsif rental > 1 && rental <= 4
+      discount = (@price_per_day * 0.1)
+    elsif rental >= 4 && rental <= 10
+      discount = (@price_per_day * 0.3)
     elsif rental >= 10
-      @price_per_day = (@price_per_day * 0.5) + (@price_per_day * 10)
+      discount = (@price_per_day * 0.10)
     else
-      @price_per_day = @price_per_day
+      discount = @price_per_day
     end
-    time = rental * @price_per_day
+    return discount
+  end
+
+  def travel
+    time = rental * discount
     fare = @distance * @price_per_km
     total = time + fare
     return total
@@ -40,11 +46,17 @@ class Car
     tempHash = {
         "rentals": [
           {"id" => 1,
-          "price" => demo1.travel},
+          "price" => demo1.travel,
+          "days" => demo1.rental
+        },
           {"id" => 2,
-          "price" => demo2.travel},
+          "price" => demo2.travel,
+          "days" => demo2.rental
+        },
           {"id" => 3,
-          "price" => demo3.travel}
+          "price" => demo3.travel,
+          "days" => demo3.rental
+        }
         ]
       }
     File.open("./data/output.json" , "w") do |f|
