@@ -2,15 +2,15 @@
   "rentals": [
     {
       "id": 1,
-      "price": 5000
+      "price": 7000
     },
     {
       "id": 2,
-      "price": 20250
+      "price": 15500
     },
     {
       "id": 3,
-      "price": 4600
+      "price": 11250
     }
   ]
 }
