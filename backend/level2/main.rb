@@ -20,7 +20,7 @@ class Car
     #if statement for the discount rate
     if rental <= 1
       discount = 0
-    elsif rental > 1 && rental <=
+    elsif rental > 1 && rental <=4
       discount = (@price_per_day * 0.1)
     elsif rental >= 4 && rental <= 10
       discount = (@price_per_day * 0.3)
