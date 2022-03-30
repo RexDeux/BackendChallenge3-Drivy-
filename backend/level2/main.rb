@@ -10,7 +10,7 @@ class Car
   end
 
   def rental
-    days = (@end_date.mjd..@start_date.mjd).count
+    days = (@start_date.mjd..@end_date.mjd).count
     return days
   end
 
