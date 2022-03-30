@@ -1,6 +1,7 @@
 require 'json'
 require 'date'
 class Car
+  #initiliaze method with the constants needed for each case. Used the relevant ones needed by following the JSON file
   def initialize(price_per_day, price_per_km, distance, start_date, end_date)
     @price_per_day = price_per_day
     @price_per_km = price_per_km
@@ -10,27 +11,27 @@ class Car
   end
 
   def rental
+    #days method using count so the 1st and last day are counted as well
     days = (@start_date.mjd..@end_date.mjd).count
     return days
   end
 
   def discount
-    if rental >= 1
-      discount =  @price_per_day
-    elsif rental > 1 && rental <= 4
+    #if statement for the discount rate
+    if rental > 1
       discount = (@price_per_day * 0.1)
-    elsif rental >= 4 && rental <= 10
+    elsif rental >= 4
       discount = (@price_per_day * 0.3)
     elsif rental >= 10
-      discount = (@price_per_day * 0.10)
+      discount = (@price_per_day * 0.5)
     else
-      discount = @price_per_day
+      discount = 0
     end
     return discount
   end
 
   def travel
-    time = rental * discount
+    time = rental * @price_per_day
     fare = @distance * @price_per_km
     total = time + fare
     return total
