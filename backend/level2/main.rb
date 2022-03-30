@@ -18,19 +18,20 @@ class Car
 
   def discount
     #if statement for the discount rate
-    if rental > 1
+    if rental <= 1
+      discount = 0
+    elsif rental > 1 && rental <=
       discount = (@price_per_day * 0.1)
-    elsif rental >= 4
+    elsif rental >= 4 && rental <= 10
       discount = (@price_per_day * 0.3)
     elsif rental >= 10
       discount = (@price_per_day * 0.5)
-    else
-      discount = 0
     end
     return discount
   end
 
   def travel
+    @price_per_day = (@price_per_day - discount)
     time = rental * @price_per_day
     fare = @distance * @price_per_km
     total = time + fare
