@@ -75,33 +75,97 @@ class Car
         "rentals": [
           {
             "id": 1,
-            "price": demo1.dynamic,
-            "commission": {
-              "insurance_fee": demo1.insurance_fee,
-              "assistance_fee": demo1.roadside,
-              "drivy_fee": demo1.fee
-            }
+            "actions": [
+              {
+                "who": "driver",
+                "type": "debit",
+                "amount": demo1.dynamic
+              },
+              {
+                "who": "owner",
+                "type": "credit",
+                "amount": demo1.dynamic - (demo1.insurance_fee - demo1.fee)
+              },
+              {
+                "who": "insurance",
+                "type": "credit",
+                "amount": demo1.insurance_fee
+              },
+              {
+                "who": "assistance",
+                "type": "credit",
+                "amount": demo1.roadside
+              },
+              {
+                "who": "drivy",
+                "type": "credit",
+                "amount": demo1.fee
+              }
+            ]
           },
-          {
+           {
             "id": 2,
-            "price": demo2.dynamic,
-            "commission": {
-              "insurance_fee": demo2.insurance_fee,
-              "assistance_fee": demo2.roadside,
-              "drivy_fee": demo2.fee
-            }
+            "actions": [
+              {
+                "who": "driver",
+                "type": "debit",
+                "amount": demo2.dynamic
+              },
+              {
+                "who": "owner",
+                "type": "credit",
+                "amount": demo2.dynamic - (demo2.insurance_fee - demo2.fee)
+              },
+              {
+                "who": "insurance",
+                "type": "credit",
+                "amount": demo2.insurance_fee
+              },
+              {
+                "who": "assistance",
+                "type": "credit",
+                "amount": demo2.roadside
+              },
+              {
+                "who": "drivy",
+                "type": "credit",
+                "amount": demo2.fee
+              }
+            ]
           },
           {
             "id": 3,
-            "price": demo3.dynamic,
-            "commission": {
-              "insurance_fee": demo3.insurance_fee,
-              "assistance_fee": demo3.roadside,
-              "drivy_fee": demo3.fee
-            }
+            "actions": [
+              {
+                "who": "driver",
+                "type": "debit",
+                "amount": demo3.dynamic
+              },
+              {
+                "who": "owner",
+                "type": "credit",
+                "amount": demo3.dynamic - (demo3.insurance_fee - demo3.fee)
+              },
+              {
+                "who": "insurance",
+                "type": "credit",
+                "amount": demo3.insurance_fee
+              },
+              {
+                "who": "assistance",
+                "type": "credit",
+                "amount": demo3.roadside
+              },
+              {
+                "who": "drivy",
+                "type": "credit",
+                "amount": demo3.fee
+              }
+            ]
           }
         ]
       }
+
     File.open("./data/output.json" , "w") do |f|
       f.write(JSON.pretty_generate(tempHash))
     end
