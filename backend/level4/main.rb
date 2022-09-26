@@ -65,6 +65,12 @@ class Car
     return roadside
   end
 
+  def options
+    days = @start_date - @end_date
+    gps = 5 + day
+    baby_seat = 2 + day
+    add_insurance = 10 + day
+  end
   def home
     file = File.read('./data/input.json')
     data = JSON.parse(file)
