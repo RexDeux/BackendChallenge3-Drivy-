@@ -12,27 +12,32 @@ class Car
 
   def rental
     #days method using count so the 1st and last day are counted as well
-    days = (@start_date.mjd..@end_date.mjd).count
+    days = (@end_date - @start_date).to_i
+    if days == 0
+      days = 1
+    elsif days == 1
+      days = 2
+    else
+      days = days
+    end
     return days
   end
 
   def discount
-    #if statement for the discount rate
-    if rental <= 1
-      discount = 0
-    elsif rental > 1 && rental <= 4
-      discount = (@price_per_day * 0.1)
-    elsif rental >= 4 && rental <= 10
-      discount = (@price_per_day * 0.3)
+    if rental >= 1
+      @price_per_day = @price_per_day * 0.1
+    elsif rental >= 4
+      @price_per_day = @price_per_day * 0.3
     elsif rental >= 10
-      discount = (@price_per_day * 0.5)
+      @price_per_day = @price_per_day * 0.5
+    else
+      @price_per_day = @price_per_day
     end
-    return discount
+    return @price_per_day
   end
 
-  def travel
-    discount_price_per_day = @price_per_day - discount
-    time = rental * discount_price_per_day
+   def travel
+    time = rental * discount
     fare = @distance * @price_per_km
     total = time + fare
     return total
