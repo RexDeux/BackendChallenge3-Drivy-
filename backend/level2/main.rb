@@ -24,12 +24,12 @@ class Car
   end
 
   def discount
-    if rental >= 1
-      @price_per_day = @price_per_day * 0.1
-    elsif rental >= 4
-      @price_per_day = @price_per_day * 0.3
-    elsif rental >= 10
-      @price_per_day = @price_per_day * 0.5
+    if rental > 1
+      @price_per_day = ((@price_per_day * (rental - 1))) * (0.1)
+    elsif rental > 4
+      @price_per_day = ((@price_per_day * (rental - 4))) * (0.3)
+    elsif rental > 10
+      @price_per_day = ((@price_per_day * (rental - 10))) * (0.5)
     else
       @price_per_day = @price_per_day
     end
@@ -37,7 +37,7 @@ class Car
   end
 
    def travel
-    time = rental * discount
+    time = rental * @price_per_day
     fare = @distance * @price_per_km
     total = time + fare
     return total
